@@ -11,14 +11,20 @@ function Game({verifyLetter}) {
         Dica sobre a palavra: <span>Dica...</span>
       </h3>
       <div class="wordContainer">
-        <span className='letter'>A</span>
+        <span className='letter'>aa</span>
         <span class="blankSquare"></span>
       </div>
       <div class="letterContainer">
         <p>Tente adivinhar uma letra da palavra:</p>
         <form>
           <input type="text" name='letter' maxLength="1" required/>
+          <button>Jogar!</button>
         </form>
+      </div>
+      <div class="wrongLettersContainer">
+        <p>Letras já utilizadas:</p>
+        <span>a,</span>
+        <span>e,</span>
       </div>
     </div>
   )
