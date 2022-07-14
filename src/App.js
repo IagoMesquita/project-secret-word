@@ -75,9 +75,18 @@ function App() {
       
       setGuessedLetters([...guessedLetters, normalizedLetter])
     } else {
+      setGuesses( guesses - 1 )
       setWrongLetters([...wrongLetters,  normalizedLetter])
     }
   }
+
+  useEffect(() => {
+    if (guesses <= 0) {
+      // reset all states
+      
+      setGameStage(stages[2].name)
+    }
+  }, [guesses])
 
   // restarts the game
   const retry = () => {
