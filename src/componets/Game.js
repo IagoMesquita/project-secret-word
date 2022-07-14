@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import './Game.css' 
 
 function Game({
@@ -10,7 +11,25 @@ function Game({
   guesses,
   score
 }) {
-  console.log(pickedWord)
+
+  const [letter, setLetter] = useState("");
+
+  // useRef(prieira vez usando): cria uma referência a algum lugar | Aula 75 / min: 3
+  const letterInputRef = useRef(null)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    verifyLetter(letter)
+
+    setLetter("")
+
+    // usando a referencia que foi "marcada" com o atributo ref
+    // console.log('REf', letterInputRef)
+    letterInputRef.current.focus()
+
+  }
+
   return (
     <div className="game">
       <p className="points">
@@ -34,8 +53,17 @@ function Game({
       </div>
       <div className="letterContainer">
         <p>Tente adivinhar uma letra da palavra:</p>
-        <form>
-          <input type="text" name='letter' maxLength="1" required/>
+        <form onSubmit={ handleSubmit }>
+          <input
+            type="text"
+            name='letter'
+            maxLength="1"
+            required
+            onChange={(e) => setLetter(e.target.value)}
+            value={letter}
+            // atributo que recebera a referência
+            ref={letterInputRef}
+          />
           <button>Jogar!</button>
         </form>
       </div>
