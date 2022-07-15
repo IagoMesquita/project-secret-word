@@ -19,7 +19,7 @@ const stages = [
 ]
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
-  const [words, setWords] = useState(wordsList);
+  const [words] = useState(wordsList);
 
   const guessesQty = 3;  
 
@@ -119,7 +119,7 @@ function App() {
           score={score}
         /> 
       )}
-      { gameStage === 'end' &&  <GameOver retry={retry} /> }
+      { gameStage === 'end' &&  <GameOver retry={retry} score={score} /> }
     </div>
   );
 }
