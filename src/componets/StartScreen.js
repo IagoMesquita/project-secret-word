@@ -7,7 +7,8 @@ const StartScreen = ({ startGame }) => {
       <button
         onClick={ startGame }
       >
-        Começar o jogo</button>
+        Começar o jogo
+      </button>
     </div>
   );
 }
