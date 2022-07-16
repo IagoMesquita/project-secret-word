@@ -54,15 +54,20 @@ function App() {
     const {word, category } = pickWordAndCategory()
     
     // create an array of letters
-    let wordLetters = word.split("");
-    wordLetters = wordLetters.map((l) => l.toLowerCase());
+    console.log('word', word)
+    
+    if (word !== undefined) {
+      let wordLetters = word ? word.split("") : null;
+      wordLetters = wordLetters.map((l) => l.toLowerCase());
 
-    // fill states
-    setPickedWord(word)
-    setPickedCategory(category)
-    setLetters(wordLetters)
+      // fill states
+      setPickedWord(word)
+      setPickedCategory(category)
+      setLetters(wordLetters)
 
-    setGameStage(stages[1].name)
+      setGameStage(stages[1].name)
+    }
+    
   }, [pickWordAndCategory])
 
   // process the letter input
@@ -102,17 +107,19 @@ function App() {
 
   //check win condition
   useEffect(() => {
+    console.log('ENTROU!!')
     const uniqueLetters = [...new Set(letters)];
 
     // win condition
     if (guessedLetters.length === uniqueLetters.length) {
       // add score
-      setScore(score + 100);
+      // setScore(score + 100);
+      setScore((actualState) => actualState += 100) // Para não ter que utilizar o "score" como depêndecia, fiz dessa forma
 
       // restart game with new word
       startGame();
     }
-  }, [guessedLetters, letters, startGame, score]);
+  }, [guessedLetters, letters, startGame]);
 
   // restarts the game
   const retry = () => {
